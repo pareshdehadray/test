@@ -1,0 +1,74 @@
+﻿@model DataAccess.item_utilisation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>item_utilisation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.asof_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asof_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.acquired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acquired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unused)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unused)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wasted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wasted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cnf_categories.category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cnf_categories.category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cnf_locations.location_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cnf_locations.location_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cnf_users.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cnf_users.password)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,104 @@
+﻿@model WebApplication1.Models.ChartData
+
+@{
+    ViewBag.Title = "Charts1223";
+}
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/Chart.js"></script>
+
+<h2>Charts</h2>
+
+@Html.DropDownListFor(x => x.Locations, new SelectList(Model.Locations))
+
+<div style="width:900px;height:800px;">
+    <canvas id="myChart"></canvas>
+</div>
+
+
+<script>
+
+    function setDropdownEvent() {
+         $('#Locations').change(function () {  
+            $.ajax({  
+                type: "get",  
+                url: "/Home/ChartsData/" + $('#Locations').val(),  
+              
+                success: function (data) {  
+                    renderChart(data);
+                }  
+            });  
+        }); 
+    }
+
+    function renderChart(speedData) {
+
+        var ctx = document.getElementById('myChart');//.getContext('2d');
+
+
+         var chartOptions = {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                    boxWidth: 20,
+                    fontColor: 'blue'
+                },
+                responsive: false
+            }
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: speedData,
+            options: chartOptions
+        });
+    }
+
+    $(() => {
+
+        setDropdownEvent();
+
+       
+
+        var speedData = @Html.Raw(Json.Encode(Model.Data));
+        renderChart(speedData);
+       
+    });
+
+
+    //var myChart = new Chart(ctx, {
+    //    type: 'line',
+    //    lineColor: 'red',
+    //    data: {
+    //        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    //        lineColor: "red",
+    //        datasets: [{
+    //            label: '# of Votes',
+    //            fill: false,
+    //            data: [12, 19, 3, 5, 2, 3],
+
+    //            borderWidth: 1
+    //        },
+    //            {
+    //            label: '# of Votes',
+    //            fill: false,
+    //            data: [33, 29, 32, 15, 22, 23],
+
+    //            borderWidth: 1
+    //        }
+    //        ]
+    //    },
+    //    options: {
+    //        scales: {
+    //            yAxes: [{
+    //                ticks: {
+    //                    beginAtZero: true
+    //                }
+    //            }]
+    //        }
+    //    }
+    //});
+</script>
+
+
+

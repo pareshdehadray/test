@@ -43,7 +43,7 @@ namespace WebApplication1.Controllers
         {
             ViewBag.category_id = new SelectList(db.cnf_categories, "id", "category");
             ViewBag.location_id = new SelectList(db.cnf_locations, "id", "location_code");
-            ViewBag.created_by = new SelectList(db.cnf_users, "username", "password");
+            ViewBag.created_by = new SelectList(db.cnf_users, "username", "username");
             return View();
         }
 

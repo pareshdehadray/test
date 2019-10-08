@@ -33,6 +33,7 @@
 
                     @if (Session["IsLoggedIn"]?.ToString() == "true")
                     {
+                        <li>@Html.ActionLink("Change Password", "ChangePassword", "Admin")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Admin")</li>
                     }
                     else

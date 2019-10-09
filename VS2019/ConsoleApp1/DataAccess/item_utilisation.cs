@@ -11,10 +11,12 @@ namespace DataAccess
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class item_utilisation
     {
         public decimal id { get; set; }
+        [UIHint("Date")]
         public System.DateTime asof_date { get; set; }
         public decimal category_id { get; set; }
         public Nullable<decimal> acquired { get; set; }

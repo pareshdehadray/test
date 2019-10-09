@@ -19,7 +19,8 @@ namespace WebApplication1.Controllers
         // GET: Vendor
         public ActionResult Index()
         {
-            var item_utilisation = db.item_utilisation.Include(i => i.cnf_categories).Include(i => i.cnf_locations).Include(i => i.cnf_users);
+            string userName = Session["UserName"].ToString();
+            var item_utilisation = db.item_utilisation.Where(x => x.created_by == userName).Include(i => i.cnf_categories).Include(i => i.cnf_locations).Include(i => i.cnf_users);
             return View(item_utilisation.ToList());
         }
 
@@ -41,10 +42,18 @@ namespace WebApplication1.Controllers
         // GET: Vendor/Create
         public ActionResult Create()
         {
-            ViewBag.category_id = new SelectList(db.cnf_categories, "id", "category");
+            string userName = Session["UserName"].ToString();
+            var userCategories = db.cnf_user_category_mapping.Where(x => x.username == userName).Join(db.cnf_categories, x => x.category_id, y => y.id, (x, y) => new { id= y.id, category = y.category });
+            var list = userCategories.ToList();
+            
+            ViewBag.category_id = new SelectList(userCategories, "id", "category");
             ViewBag.location_id = new SelectList(db.cnf_locations, "id", "location_code");
             ViewBag.created_by = new SelectList(db.cnf_users, "username", "username");
-            return View();
+
+            item_utilisation item_Utilisation = new item_utilisation();
+            item_Utilisation.asof_date = DateTime.Now.Date;
+
+            return View(item_Utilisation);
         }
 
         // POST: Vendor/Create
@@ -56,6 +65,11 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
+                string userName = Session["UserName"].ToString();
+                var user = db.cnf_users.Where(x => x.username == userName).First();
+                item_utilisation.created_by = user.username;
+                item_utilisation.location_id = user.location_id;
+
                 db.item_utilisation.Add(item_utilisation);
                 db.SaveChanges();
                 return RedirectToAction("Index");

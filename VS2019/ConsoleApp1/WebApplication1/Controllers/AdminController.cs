@@ -71,7 +71,7 @@ namespace WebApplication1.Controllers
                 {
                     HttpContext.User = new GenericPrincipal(new GenericIdentity(loginModel.UserID, "forms"), new string[] { "Vendor" });
                     Session["IsVendor"] = "true";
-                    return RedirectToAction("Index", "Vendor");
+                    return RedirectToAction("Create", "Vendor");
                 }
                 else
                 {

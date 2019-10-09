@@ -1,20 +1,21 @@
-﻿1. change password (not automatic)
-2. enable cateogry of food entry/edit depending on user access
-3. show only those data to vendor which is entered by him
+﻿1. change password (not automatic) (done)
+2. enable cateogry of food entry/edit depending on user access (done)
+3. show only those data to vendor which is entered by him (done)
 4. weight and volumn dropdown (put in web.config)
-5. datetime picker on date
-6. cannot log future entry
+5. datetime picker on date (chrome showing)
+6. cannot log future entry 
 7. move login at proper place
 8. reset password by admin
-9. user should see directly food login screen
+9. user should see directly food login screen (done)
 10. capital letter, same text every screen (create/edit/delete/view)
 11. user control authorize
-12. new user create password should be encryped
+12. new user create password should be encryped (done)
 13. before add check if user/location exist or not
-14. new role Admin and Vendor
+14. new role Admin and Vendor (done)
 15. on login redirect as per role (done)
 16. create log entry auto select location and createad by 
 17. show only location wise unit
+18. sum on unused and wasted food cannot greater than acquired
 
 
 

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Charts1223";
 }
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/Chart.js"></script>
 
 <h2>Charts</h2>
@@ -63,11 +63,11 @@
     }
 
     function getRegion() {
-          $.ajax({  
-                type: "get",  
-                url: "/Report/GetLocations/All/All", 
-              
-                success: function (data) {  
+          $.ajax({
+                type: "get",
+                url: "/Report/GetLocations/All/All",
+
+                success: function (data) {
                     var sData = new String(data);
                     var splitData = sData.split(',');
                     $('#Region').html('');
@@ -78,22 +78,22 @@
                     $('#City').append("<option value='All'>All</option>");
                       $('#Office').html('');
                     $('#Office').append("<option value=''>All</option>");
-                    for (var i = 0; i < splitData.length; i++) { 
-                       
-                       $('#Region').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>"); 
-                    }  
+                    for (var i = 0; i < splitData.length; i++) {
+
+                       $('#Region').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>");
+                    }
                     renderChart();
-                }  
-            });   
+                }
+            });
     }
-    
+
     function getCountry() {
-         $('#Region').change(function () {  
-            $.ajax({  
-                type: "get",  
-                url: "/Report/GetLocations/Region/" + $('#Region').val(),  
-              
-                success: function (data) {  
+         $('#Region').change(function () {
+            $.ajax({
+                type: "get",
+                url: "/Report/GetLocations/Region/" + $('#Region').val(),
+
+                success: function (data) {
                     var sData = new String(data);
                     var splitData = sData.split(',');
                     $('#Country').html('');
@@ -102,64 +102,64 @@
                     $('#City').append("<option value='All'>All</option>");
                       $('#Office').html('');
                     $('#Office').append("<option value='All'>All</option>");
-                    for (var i = 0; i < splitData.length; i++) { 
-                       
-                       $('#Country').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>"); 
-                    }  
+                    for (var i = 0; i < splitData.length; i++) {
+
+                       $('#Country').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>");
+                    }
                    renderChart();
-                }  
-            });  
-        }); 
+                }
+            });
+        });
     }
 
     function getCity() {
-         $('#Country').change(function () {  
-            $.ajax({  
-                type: "get",  
-                url: "/Report/GetLocations/Country/" + $('#Country').val(),  
-              
-                success: function (data) {  
+         $('#Country').change(function () {
+            $.ajax({
+                type: "get",
+                url: "/Report/GetLocations/Country/" + $('#Country').val(),
+
+                success: function (data) {
                     var sData = new String(data);
                     var splitData = sData.split(',');
                     $('#City').html('');
                     $('#City').append("<option value='All'>All</option>");
                       $('#Office').html('');
                     $('#Office').append("<option value='All'>All</option>");
-                    for (var i = 0; i < splitData.length; i++) { 
-                       
-                       $('#City').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>"); 
-                    }  
+                    for (var i = 0; i < splitData.length; i++) {
+
+                       $('#City').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>");
+                    }
                    renderChart();
-                }  
-            });  
-        }); 
+                }
+            });
+        });
     }
 
     function getOffice() {
-         $('#City').change(function () {  
-            $.ajax({  
-                type: "get",  
-                url: "/Report/GetLocations/City/" + $('#City').val(),  
-              
-                success: function (data) {  
+         $('#City').change(function () {
+            $.ajax({
+                type: "get",
+                url: "/Report/GetLocations/City/" + $('#City').val(),
+
+                success: function (data) {
                     var sData = new String(data);
                     var splitData = sData.split(',');
                     $('#Office').html('');
                     $('#Office').append("<option value='All'>All</option>");
-                    for (var i = 0; i < splitData.length; i++) { 
-                       
-                       $('#Office').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>"); 
-                    }  
+                    for (var i = 0; i < splitData.length; i++) {
+
+                       $('#Office').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>");
+                    }
                    renderChart();
-                }  
-            });  
-        }); 
+                }
+            });
+        });
     }
 
       function renderChartOnOfficeChange() {
-         $('#Office').change(function () {  
+         $('#Office').change(function () {
            renderChart();
-        }); 
+        });
     }
 
     function renderChart() {
@@ -173,7 +173,7 @@
          var EndDate = $('#EndDate').val();
         var type = $('#Type').val();
         var ctx = $('#myChart');
-      
+
         var chartOptions = {
             legend: {
                 display: true,
@@ -186,18 +186,18 @@
             }
         };
       console.log('start');
-          $.ajax({  
-                type: "get",  
-                url: "/Report/ChartsData/" + region + "/"+  country + "/" + city + "/" + office + "/" + type + "/" + period + "/" + StartDate + "/" + EndDate ,  
-              
-                success: function (data) {  
+          $.ajax({
+                type: "get",
+                url: "/Report/ChartsDataByAPI/" + region + "/"+  country + "/" + city + "/" + office + "/" + type + "/" + period + "/" + StartDate + "/" + EndDate ,
+
+                success: function (data) {
                    var myChart = new Chart(ctx, {
-                        type: 'line',
+                        type: 'bar',
                         data: data,
                         options: chartOptions
                     });
-                }  
-            });  
+                }
+            });
     }
 
     $(() => {
@@ -215,7 +215,7 @@
     });
 
 
-    
+
 </script>
 
 

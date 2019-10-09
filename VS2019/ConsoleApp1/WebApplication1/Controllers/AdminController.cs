@@ -46,11 +46,13 @@ namespace WebApplication1.Controllers
 
             var userData = db.cnf_users.Where(x => x.username == loginModel.UserID && x.password == password);
 
-            if (userData.Count() == 1)
+            if (userData.Count() >= 1)
             {
                 Session["UserName"] = loginModel.UserID;
 
-                if (userData.FirstOrDefault().password_changed == 0)
+                var firstUserData = userData.First();
+
+                if (firstUserData.password_changed == 0)
                 {
                     return RedirectToAction("ChangePassword");
                 }
@@ -59,13 +61,13 @@ namespace WebApplication1.Controllers
 
                 FormsAuthentication.SetAuthCookie(loginModel.UserID, true);
 
-                if (loginModel.UserID.ToLower() == "admin")
+                if (firstUserData.role.ToLower() == "admin")
                 {
                     HttpContext.User = new GenericPrincipal(new GenericIdentity(loginModel.UserID, "forms"), new string[] { "Admin" });
                     Session["IsAdmin"] = "true";
                     return RedirectToAction("Index", "Admin");
                 }
-                else if (loginModel.UserID.ToLower() == "vendor")
+                else if (firstUserData.role.ToLower() == "vendor")
                 {
                     HttpContext.User = new GenericPrincipal(new GenericIdentity(loginModel.UserID, "forms"), new string[] { "Vendor" });
                     Session["IsVendor"] = "true";
@@ -79,7 +81,7 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Invalid UserID or Password");
+                ModelState.AddModelError("", "Invalid User ID or Password");
                 return View();
             }
         }
@@ -137,7 +139,6 @@ namespace WebApplication1.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-
 
             return View();
         }

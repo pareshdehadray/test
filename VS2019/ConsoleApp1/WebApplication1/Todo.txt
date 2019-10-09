@@ -12,7 +12,7 @@
 12. new user create password should be encryped
 13. before add check if user/location exist or not
 14. new role Admin and Vendor
-15. on login redirect as per role
+15. on login redirect as per role (done)
 16. create log entry auto select location and createad by 
 
 

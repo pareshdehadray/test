@@ -10,6 +10,8 @@ using DataAccess;
 
 namespace WebApplication1.Controllers
 {
+    //[Authorize(Roles = "Admin")]
+    [Authorize]
     public class LocationController : Controller
     {
         private hackathon2019Entities db = new hackathon2019Entities();

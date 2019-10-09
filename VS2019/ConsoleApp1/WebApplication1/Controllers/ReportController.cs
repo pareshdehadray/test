@@ -70,46 +70,7 @@ namespace WebApplication1.Controllers
 
         public ViewResult ChartsAPI()
         {
-            ChartData chartData = new ChartData();
-
-            DataAccess.hackathon2019Entities hackathon2019Entities = new DataAccess.hackathon2019Entities();
-            var rawData = hackathon2019Entities.item_utilisation.Join(hackathon2019Entities.cnf_locations, x => x.category_id, y => y.id, (x, y) => new { x.wasted, y.location_code, x.asof_date }).ToList();
-
-
-            var dataFirst = new
-            {
-                label = rawData[0].location_code,
-                data = rawData.Select(x => x.wasted),
-
-                lineTension = 0,
-                fill = false,
-                borderColor = $"rgb({GetRandomNumber()},{GetRandomNumber()},{GetRandomNumber()})"
-            };
-
-            //var dataSecond = new
-            //{
-            //    label = "Car B - Speed (mph)",
-            //    data = new int[] { 20, 15, 60, 60, 65, 30, 70 },
-            //    lineTension = 0,
-            //    fill = false,
-            //    borderColor = $"rgb({GetRandomNumber()},{GetRandomNumber()},{GetRandomNumber()})"
-            //};
-
-            var data = new
-            {
-                //labels = new string[] { "0s", "10s", "20s", "30s", "40s", "50s", "60s" },
-                labels = rawData.Select(x => x.asof_date.ToString("dd-MM-yyyy")),
-                //datasets = new[] { dataFirst, dataSecond }
-                datasets = new[] { dataFirst }
-
-            };
-
-            chartData.Data = data;
-
-            chartData.Locations.AddRange(hackathon2019Entities.cnf_locations.Select(x => x.location_code));
-
-
-            return View(chartData);
+            return View();
         }
 
         public JsonResult ChartsData(string region, string country, string city, string office, string graphType, string Period, string StartDate, string EndDate)

@@ -41,6 +41,8 @@ namespace WebApplication1.Controllers
             return r.Next(1, 255);
         }
 
+       
+
         public ViewResult Charts()
         {
             ChartData chartData = new ChartData();

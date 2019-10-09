@@ -113,5 +113,33 @@ namespace WebApplication1.Controllers
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetLocations(string id)
+        {
+            DataAccess.hackathon2019Entities hackathon2019Entities = new DataAccess.hackathon2019Entities();
+
+            IEnumerable<string> locations;
+
+            switch (id)
+            {
+                case "Region":
+                    locations = hackathon2019Entities.cnf_locations.Select(x => x.region).Distinct().OrderBy(x => x).ToList();
+                    break;
+                case "Country":
+                    locations = hackathon2019Entities.cnf_locations.Select(x => x.country).Distinct().OrderBy(x => x).ToList();
+                    break;
+                case "City":
+                    locations = hackathon2019Entities.cnf_locations.Select(x => x.city).Distinct().OrderBy(x => x).ToList();
+                    break;
+                case "Office":
+                    locations = hackathon2019Entities.cnf_locations.Select(x => x.location_code).Distinct().OrderBy(x => x).ToList();
+                    break;
+                default:
+                    locations = new List<string>();
+                    break;
+            }
+
+            return Json(locations, JsonRequestBehavior.AllowGet);
+        }
     }
 }

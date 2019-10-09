@@ -1,0 +1,96 @@
+﻿@model DataAccess.cnf_locations
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>cnf_locations</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Location Code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.location_code)
+        </dd>
+
+        <dt>
+           Address
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+           City
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+          State
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        <dt>
+           Country
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country)
+        </dd>
+
+        <dt>
+           Region
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.region)
+        </dd>
+
+        <dt>
+           Area Code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pin)
+        </dd>
+
+        <dt>
+            Weight Unit
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weight_unit)
+        </dd>
+
+        <dt>
+           Volume Unit
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volume_unit)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

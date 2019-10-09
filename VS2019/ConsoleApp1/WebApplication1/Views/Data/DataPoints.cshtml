@@ -1,0 +1,40 @@
+﻿@model string
+@{
+    ViewBag.Title = "DataPoints";
+}
+
+<h2>DataPoints</h2>
+
+<div id="chartContainer"></div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/canvasjs.min.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            theme: "light2",
+            zoomEnabled: true,
+            animationEnabled: true,
+            title: {
+                text: "Line Chart in ASP.Net MVC using CanvasJS"
+            },
+            subtitles: [
+                {
+                    text: "Try Zooming and Panning"
+                }
+            ],
+            data: [
+            {
+                type: "line",
+
+                dataPoints: @Html.Raw(Model)
+
+               
+            }
+            ]
+        });
+        chart.render();
+    });
+</script>
+

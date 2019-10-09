@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="hackathon2019Entities-Web.config Connection String" description="hackathon2019Entities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Hackathon.csdl|res://*/Hackathon.ssdl|res://*/Hackathon.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=dsvmazure.westindia.cloudapp.azure.com;initial catalog=hackathon2019;persist security info=True;user id=test;password=test;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Learn\\SourceCode\\GitTest\\VS2019\\ConsoleApp1\\WebApplication1\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='hackathon2019Entities']/@connectionString" />
+  </parameter>
+</parameters>

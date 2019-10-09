@@ -7,22 +7,23 @@
 <script src="~/Scripts/Chart.js"></script>
 
 <h2>Charts</h2>
-<input type="date" id="StartDate" onchange="dateTimeChange();" />
-<input type="date" id="EndDate" onchange="dateTimeChange();" />
+<input type="date" id="StartDate" onchange="renderChart();" />
+<input type="date" id="EndDate" onchange="renderChart();" />
 
 <br />
-<select id="Period" style="width:100px">
-    <option value="Daily">Daily</option>
-    <option value="Monthly">Monthly</option>
-    <option value="Yearly">Yearly</option>
+<select id="Period" style="width:100px" onchange="renderChart();">
+    <option value="daily">Daily</option>
+    <option value="monthly">Monthly</option>
+    <option value="yearly">Yearly</option>
 </select>
 
-<select id="Type" style="width:100px">
-    <option value="Waste">Waste</option>
-    <option value="WasteP">Waste %</option>
-    <option value="Unused">Unused</option>
-    <option value="UnusedP">Unused %</option>
-    <option value="CO2Emission">CO2 Emission</option>
+<select id="Type" style="width:200px" onchange="renderChart();">
+    <option value="wasted">Wasted</option>
+    <option value="wastedPercent">Wasted %</option>
+    <option value="wastedCO2">Wasted CO2 Emission</option>
+    <option value="unused">Unused</option>
+    <option value="unusedPercent">Unused %</option>
+    <option value="unusedCO2">Unused CO2 Emission</option>
 </select>
 
 <select id="SingleDouble" style="width:100px">
@@ -33,19 +34,19 @@
 <br />
 
 <select id="Region" style="width:100px">
-    <option>All</option>
+    <option value="All">All</option>
 </select>
 
 <select id="Country" style="width:100px">
-    <option>All</option>
+    <option value="All">All</option>
 </select>
 
 <select id="City" style="width:100px">
-    <option>All</option>
+    <option value="All">All</option>
 </select>
 
 <select id="Office" style="width:100px">
-    <option>All</option>
+    <option value="All">All</option>
 </select>
 <button id="btnRun" onclick="renderChart();">Run</button>
 
@@ -55,12 +56,7 @@
 </div>
 
 <script>
-    function dateTimeChange() {
-        var StartDate = $('#StartDate').val();
-        var EndDate = $('#EndDate').val();
-        console.log(StartDate);
-        console.log(EndDate);
-    }
+   
 
     function getRegion() {
           $.ajax({
@@ -77,7 +73,7 @@
                      $('#City').html('');
                     $('#City').append("<option value='All'>All</option>");
                       $('#Office').html('');
-                    $('#Office').append("<option value=''>All</option>");
+                    $('#Office').append("<option value='All'>All</option>");
                     for (var i = 0; i < splitData.length; i++) {
 
                        $('#Region').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>");
@@ -161,7 +157,7 @@
            renderChart();
         });
     }
-
+     var myChart;
     function renderChart() {
 
         var region = $('#Region').val();
@@ -172,30 +168,41 @@
          var StartDate = $('#StartDate').val();
          var EndDate = $('#EndDate').val();
         var type = $('#Type').val();
-        var ctx = $('#myChart');
+        var ctx = document.getElementById("myChart").getContext("2d");
 
         var chartOptions = {
             legend: {
-                display: true,
+                display: false,
                 position: 'top',
                 labels: {
                     boxWidth: 20,
                     fontColor: 'blue'
                 },
-                responsive: false
-            }
+                responsive: false,
+                
+            },
+            backgroundColor:'red'
         };
-      console.log('start');
+
+       
+
           $.ajax({
                 type: "get",
                 url: "/Report/ChartsDataByAPI/" + region + "/"+  country + "/" + city + "/" + office + "/" + type + "/" + period + "/" + StartDate + "/" + EndDate ,
 
-                success: function (data) {
-                   var myChart = new Chart(ctx, {
+              success: function (data) {
+
+                  if (myChart) {
+                       myChart.destroy();
+                  }
+
+                   myChart = new Chart(ctx, {
                         type: 'bar',
                         data: data,
                         options: chartOptions
-                    });
+                   });
+
+                   
                 }
             });
     }

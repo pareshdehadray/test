@@ -119,7 +119,7 @@ namespace WebApplication1.Controllers
             try
             {
                 start = DateTime.ParseExact(StartDate, "yyyy-MM-dd", null);
-                end   = DateTime.ParseExact(EndDate, "yyyy-MM-dd", null);
+                end = DateTime.ParseExact(EndDate, "yyyy-MM-dd", null);
             }
             catch (Exception)
             {
@@ -138,8 +138,8 @@ namespace WebApplication1.Controllers
                     var query = db.item_utilisation.Join(db.cnf_locations, x => x.location_id, y => y.id, (x, y) => new { ItemData = x, LocationData = y })
                     .Where(x => x.LocationData.location_code == office && (x.ItemData.asof_date >= start && x.ItemData.asof_date <= end))
                     .Select(x => new { X = x.ItemData.asof_date, Y = x.ItemData.wasted.Value }).ToList();
-                        array = query.Select(x => x.Y).ToArray();
-                        lables = query.Select(x => x.X.ToString("dd-MM-yyyy")).ToArray();
+                    array = query.Select(x => x.Y).ToArray();
+                    lables = query.Select(x => x.X.ToString("dd-MM-yyyy")).ToArray();
                 }
 
             }
@@ -176,16 +176,93 @@ namespace WebApplication1.Controllers
 
             }
 
+            string locationType, locationValue;
+
+            if (office != "All")
+            {
+                locationType = "Location_Code";
+                locationValue = office;
+            }
+            else if(city != "All")
+            {
+                locationType = "City";
+                locationValue = city;
+            }
+            else if (country != "All")
+            {
+                locationType = "Country";
+                locationValue = country;
+            }
+            else if(region != "All")
+            {
+                locationType = "Region";
+                locationValue = region;
+            }
+            else
+            {
+                locationType = string.Empty;
+                locationValue = string.Empty;
+            }
+
+            string apiName = "food_{graphType}_{period}_{percentOrCo2}";
+
+            apiName = apiName.Replace("{period}", Period);
+
+            if (graphType.Contains("Percent"))
+            {
+                apiName = apiName.Replace("{percentOrCo2}", "percent");
+            }
+            else if(graphType.Contains("CO2"))
+            {
+                apiName = apiName.Replace("{percentOrCo2}", "co2");
+            }
+
+            if(graphType.Contains("wasted"))
+            {
+                apiName = apiName.Replace("{graphType}", "wasted");
+            }
+            else if (graphType.Contains("unused"))
+            {
+                apiName = apiName.Replace("{graphType}", "unused");
+            }
+
+            apiName = apiName.Replace("{percentOrCo2}","");
+
+            if (apiName.EndsWith("_"))
+            {
+                apiName = apiName.TrimEnd('_');
+            }
+
+
             HttpClient client = new HttpClient();
-            var rawData = await client.GetAsync("https://dbgreen.azurewebsites.net/api/GetGraphData?code=Qi8NhmUpdFqwqmLUmjyQMCEw9%2FTEm5Xj6zq8YIsoa0oLlC7ENBs6tQ%3D%3D&name=food_wasted_daily&locationType=city&locationValue=" + city + "&fromDate=" + start.ToString("yyyy-MM-dd") + "&toDate=" + end.ToString("yyyy-MM-dd"));
+            string query;
 
+            query = "https://dbgreen.azurewebsites.net/api/GetGraphData?code=Qi8NhmUpdFqwqmLUmjyQMCEw9%2FTEm5Xj6zq8YIsoa0oLlC7ENBs6tQ%3D%3D";
+
+            if (!string.IsNullOrEmpty(locationValue))
+            {
+                query = query + $"&name=food_wasted_daily&locationType={locationType}&locationValue={ locationValue}&fromDate=" + start.ToString("yyyy-MM-dd") + "&toDate=" + end.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                query = query + $"&name=food_wasted_daily&fromDate=" + start.ToString("yyyy-MM-dd") + "&toDate=" + end.ToString("yyyy-MM-dd");
+            }
+
+            var rawData = await client.GetAsync(query);
             string json = await rawData.Content.ReadAsStringAsync();
-            var graphData = Newtonsoft.Json.JsonConvert.DeserializeObject<CoordinateData[]>(json);
 
-         
+            CoordinateData[] graphData = null;
 
-            int[] array = new int[] { 1, 3, 3 };
-            string[] lables = new string[] { "1-10-2019", "2-10-2019", "3-10-2019" };
+            try
+            {
+                graphData = Newtonsoft.Json.JsonConvert.DeserializeObject<CoordinateData[]>(json);
+            }
+            catch (Exception)
+            {
+            }
+
+            decimal[] array = null;
+            string[] lables = null;
 
             if (graphData != null)
             {
@@ -199,6 +276,7 @@ namespace WebApplication1.Controllers
                 data = array,
                 lineTension = 0,
                 fill = false,
+                backgroundColor = "red",
                 borderColor = $"rgb({GetRandomNumber()},{GetRandomNumber()},{GetRandomNumber()})"
             };
 

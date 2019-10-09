@@ -8,6 +8,6 @@ namespace WebApplication1.Models
     public class CoordinateData
     {
         public string X { get; set; }
-        public int Y { get; set; }
+        public decimal Y { get; set; }
     }
 }

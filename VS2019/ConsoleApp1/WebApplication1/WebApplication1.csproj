@@ -130,6 +130,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\TestUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,6 +200,11 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Admin\ChangePassword.cshtml" />
+    <Content Include="Views\TestUser\Create.cshtml" />
+    <Content Include="Views\TestUser\Delete.cshtml" />
+    <Content Include="Views\TestUser\Details.cshtml" />
+    <Content Include="Views\TestUser\Edit.cshtml" />
+    <Content Include="Views\TestUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

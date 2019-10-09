@@ -54,6 +54,9 @@
     <Compile Include="cnf_categories.cs">
       <DependentUpon>Hackathon.tt</DependentUpon>
     </Compile>
+    <Compile Include="cnf_graph_queries.cs">
+      <DependentUpon>Hackathon.tt</DependentUpon>
+    </Compile>
     <Compile Include="cnf_holidays.cs">
       <DependentUpon>Hackathon.tt</DependentUpon>
     </Compile>
@@ -61,6 +64,9 @@
       <DependentUpon>Hackathon.tt</DependentUpon>
     </Compile>
     <Compile Include="cnf_users.cs">
+      <DependentUpon>Hackathon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cnf_user_category_mapping.cs">
       <DependentUpon>Hackathon.tt</DependentUpon>
     </Compile>
     <Compile Include="Hackathon.Context.cs">
@@ -81,7 +87,16 @@
     <Compile Include="item_utilisation.cs">
       <DependentUpon>Hackathon.tt</DependentUpon>
     </Compile>
+    <Compile Include="Login.cs">
+      <DependentUpon>Hackathon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoginByUsernamePassword_Result.cs">
+      <DependentUpon>Hackathon.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="user_feedback.cs">
+      <DependentUpon>Hackathon.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

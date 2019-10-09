@@ -48,6 +48,9 @@ D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\roslyn\vbc.rs
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\roslyn\VBCSCompiler.exe
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\roslyn\VBCSCompiler.exe.config
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\Antlr3.Runtime.dll
+D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\DataAccess.dll
+D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\EntityFramework.dll
+D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\EntityFramework.SqlServer.dll
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\Microsoft.Web.Infrastructure.dll
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\Newtonsoft.Json.dll
@@ -59,6 +62,10 @@ D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\System.Web.We
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\System.Web.WebPages.dll
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\System.Web.WebPages.Razor.dll
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\WebGrease.dll
+D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\DataAccess.pdb
+D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\DataAccess.dll.config
+D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\EntityFramework.xml
+D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\EntityFramework.SqlServer.xml
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\System.Web.Helpers.xml
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\System.Web.Mvc.xml
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\System.Web.Optimization.xml
@@ -74,10 +81,3 @@ D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\obj\Debug\WebAppl
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\obj\Debug\WebApplication1.dll
 D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\obj\Debug\WebApplication1.pdb
-D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\DataAccess.dll
-D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\EntityFramework.dll
-D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\DataAccess.pdb
-D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\DataAccess.dll.config
-D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\EntityFramework.xml
-D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\EntityFramework.SqlServer.dll
-D:\Learn\SourceCode\GitTest\VS2019\ConsoleApp1\WebApplication1\bin\EntityFramework.SqlServer.xml

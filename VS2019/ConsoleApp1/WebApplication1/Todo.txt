@@ -14,6 +14,7 @@
 14. new role Admin and Vendor
 15. on login redirect as per role (done)
 16. create log entry auto select location and createad by 
+17. show only location wise unit
 
 
 

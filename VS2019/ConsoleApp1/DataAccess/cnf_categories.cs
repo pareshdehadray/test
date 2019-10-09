@@ -18,6 +18,7 @@ namespace DataAccess
         public cnf_categories()
         {
             this.item_utilisation = new HashSet<item_utilisation>();
+            this.cnf_user_category_mapping = new HashSet<cnf_user_category_mapping>();
         }
     
         public decimal id { get; set; }
@@ -26,5 +27,7 @@ namespace DataAccess
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<item_utilisation> item_utilisation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cnf_user_category_mapping> cnf_user_category_mapping { get; set; }
     }
 }

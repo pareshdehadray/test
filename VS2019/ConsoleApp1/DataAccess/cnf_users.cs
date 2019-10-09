@@ -17,6 +17,7 @@ namespace DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public cnf_users()
         {
+            this.cnf_user_category_mapping = new HashSet<cnf_user_category_mapping>();
             this.item_utilisation = new HashSet<item_utilisation>();
         }
     
@@ -28,8 +29,12 @@ namespace DataAccess
         public string role { get; set; }
         public short password_changed { get; set; }
         public string confirm_password { get; set; }
+        public decimal[] selectedCategories { get; set; }
+
 
         public virtual cnf_locations cnf_locations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cnf_user_category_mapping> cnf_user_category_mapping { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<item_utilisation> item_utilisation { get; set; }
     }

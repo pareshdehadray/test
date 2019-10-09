@@ -53,6 +53,11 @@ namespace WebApplication1.Controllers
             item_utilisation item_Utilisation = new item_utilisation();
             item_Utilisation.asof_date = DateTime.Now.Date;
 
+            
+            var user = db.cnf_users.Where(x => x.username == userName).First();
+            ViewBag.UserName = userName;
+            ViewBag.Location = db.cnf_locations.Where(x => x.id == user.location_id).First().location_code;
+            
             return View(item_Utilisation);
         }
 
@@ -96,6 +101,13 @@ namespace WebApplication1.Controllers
             ViewBag.category_id = new SelectList(db.cnf_categories, "id", "category", item_utilisation.category_id);
             ViewBag.location_id = new SelectList(db.cnf_locations, "id", "location_code", item_utilisation.location_id);
             ViewBag.created_by = new SelectList(db.cnf_users, "username", "password", item_utilisation.created_by);
+
+            string userName = Session["UserName"].ToString();
+            var user = db.cnf_users.Where(x => x.username == userName).First();
+            ViewBag.UserName = userName;
+            ViewBag.Location = db.cnf_locations.Where(x => x.id == user.location_id).First().location_code;
+
+
             return View(item_utilisation);
         }
 

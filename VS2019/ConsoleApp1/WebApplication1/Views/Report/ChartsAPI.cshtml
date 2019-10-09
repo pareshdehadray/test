@@ -1,22 +1,24 @@
 ﻿@model WebApplication1.Models.ChartData
 
 @{
-    ViewBag.Title = "Charts1223";
+    ViewBag.Title = "Reports";
 }
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/Chart.js"></script>
 
-<h2>Charts</h2>
-<input type="date" id="StartDate" onchange="renderChart();" />
-<input type="date" id="EndDate" onchange="renderChart();" />
+<h2>Reports</h2>
+Start Date<input type="date" id="StartDate" onchange="renderChart();" />
+End Date <input type="date" id="EndDate" onchange="renderChart();" />
 
 <br />
+Period
 <select id="Period" style="width:100px" onchange="renderChart();">
     <option value="daily">Daily</option>
     <option value="monthly">Monthly</option>
-    <option value="yearly">Yearly</option>
+    @*<option value="yearly">Yearly</option>*@
 </select>
 
+Type
 <select id="Type" style="width:200px" onchange="renderChart();">
     <option value="wasted">Wasted</option>
     <option value="wastedPercent">Wasted %</option>
@@ -26,30 +28,36 @@
     <option value="unusedCO2">Unused CO2 Emission</option>
 </select>
 
-<select id="SingleDouble" style="width:100px">
+
+@*<select id="SingleDouble" style="width:100px">
     <option value="Single">Single</option>
     <option value="Compare">Compare</option>
-</select>
+</select>*@
 
 <br />
 
+Region
 <select id="Region" style="width:100px">
     <option value="All">All</option>
 </select>
 
+Country
 <select id="Country" style="width:100px">
     <option value="All">All</option>
 </select>
 
+City
 <select id="City" style="width:100px">
     <option value="All">All</option>
 </select>
 
+Office
 <select id="Office" style="width:100px">
     <option value="All">All</option>
 </select>
 <button id="btnRun" onclick="renderChart();">Run</button>
 
+<br />
 
 <div style="width:900px;height:800px;">
     <canvas id="myChart"></canvas>
@@ -210,8 +218,12 @@
     $(() => {
 
         var today = new Date();
-        $('#StartDate').val(today.toISOString().substr(0, 10));
-        $('#EndDate').val(today.toISOString().substr(0, 10));
+
+        var newDate = new Date(today.setMonth(today.getMonth()-2));
+        $('#StartDate').val(newDate.toISOString().substr(0, 10));
+
+        var todayforEnd = new Date();
+        $('#EndDate').val(todayforEnd.toISOString().substr(0, 10));
 
         getRegion();
         getCountry();

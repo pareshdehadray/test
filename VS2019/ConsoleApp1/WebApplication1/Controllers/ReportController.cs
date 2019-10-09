@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
             return r.Next(1, 255);
         }
 
-        public ViewResult Charts()
+        public ViewResult ChartsEF()
         {
             ChartData chartData = new ChartData();
 
@@ -68,7 +68,7 @@ namespace WebApplication1.Controllers
             return View(chartData);
         }
 
-        public ViewResult ChartsAPI()
+        public ViewResult Charts()
         {
             return View();
         }

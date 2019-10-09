@@ -1,0 +1,222 @@
+﻿@model WebApplication1.Models.ChartData
+
+@{
+    ViewBag.Title = "Charts1223";
+}
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/Chart.js"></script>
+
+<h2>Charts</h2>
+<input type="date" id="StartDate" onchange="dateTimeChange();" />
+<input type="date" id="EndDate" onchange="dateTimeChange();" />
+
+<br />
+<select id="Period" style="width:100px">
+    <option value="Daily">Daily</option>
+    <option value="Monthly">Monthly</option>
+    <option value="Yearly">Yearly</option>
+</select>
+
+<select id="Type" style="width:100px">
+    <option value="Waste">Waste</option>
+    <option value="WasteP">Waste %</option>
+    <option value="Unused">Unused</option>
+    <option value="UnusedP">Unused %</option>
+    <option value="CO2Emission">CO2 Emission</option>
+</select>
+
+<select id="SingleDouble" style="width:100px">
+    <option value="Single">Single</option>
+    <option value="Compare">Compare</option>
+</select>
+
+<br />
+
+<select id="Region" style="width:100px">
+    <option>All</option>
+</select>
+
+<select id="Country" style="width:100px">
+    <option>All</option>
+</select>
+
+<select id="City" style="width:100px">
+    <option>All</option>
+</select>
+
+<select id="Office" style="width:100px">
+    <option>All</option>
+</select>
+<button id="btnRun" onclick="renderChart();">Run</button>
+
+
+<div style="width:900px;height:800px;">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+    function dateTimeChange() {
+        var StartDate = $('#StartDate').val();
+        var EndDate = $('#EndDate').val();
+        console.log(StartDate);
+        console.log(EndDate);
+    }
+
+    function getRegion() {
+          $.ajax({  
+                type: "get",  
+                url: "/Report/GetLocations/All/All", 
+              
+                success: function (data) {  
+                    var sData = new String(data);
+                    var splitData = sData.split(',');
+                    $('#Region').html('');
+                    $('#Region').append("<option value='All'>All</option>");
+                    $('#Country').html('');
+                    $('#Country').append("<option value='All'>All</option>");
+                     $('#City').html('');
+                    $('#City').append("<option value='All'>All</option>");
+                      $('#Office').html('');
+                    $('#Office').append("<option value=''>All</option>");
+                    for (var i = 0; i < splitData.length; i++) { 
+                       
+                       $('#Region').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>"); 
+                    }  
+                    renderChart();
+                }  
+            });   
+    }
+    
+    function getCountry() {
+         $('#Region').change(function () {  
+            $.ajax({  
+                type: "get",  
+                url: "/Report/GetLocations/Region/" + $('#Region').val(),  
+              
+                success: function (data) {  
+                    var sData = new String(data);
+                    var splitData = sData.split(',');
+                    $('#Country').html('');
+                    $('#Country').append("<option value='All'>All</option>");
+                     $('#City').html('');
+                    $('#City').append("<option value='All'>All</option>");
+                      $('#Office').html('');
+                    $('#Office').append("<option value='All'>All</option>");
+                    for (var i = 0; i < splitData.length; i++) { 
+                       
+                       $('#Country').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>"); 
+                    }  
+                   renderChart();
+                }  
+            });  
+        }); 
+    }
+
+    function getCity() {
+         $('#Country').change(function () {  
+            $.ajax({  
+                type: "get",  
+                url: "/Report/GetLocations/Country/" + $('#Country').val(),  
+              
+                success: function (data) {  
+                    var sData = new String(data);
+                    var splitData = sData.split(',');
+                    $('#City').html('');
+                    $('#City').append("<option value='All'>All</option>");
+                      $('#Office').html('');
+                    $('#Office').append("<option value='All'>All</option>");
+                    for (var i = 0; i < splitData.length; i++) { 
+                       
+                       $('#City').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>"); 
+                    }  
+                   renderChart();
+                }  
+            });  
+        }); 
+    }
+
+    function getOffice() {
+         $('#City').change(function () {  
+            $.ajax({  
+                type: "get",  
+                url: "/Report/GetLocations/City/" + $('#City').val(),  
+              
+                success: function (data) {  
+                    var sData = new String(data);
+                    var splitData = sData.split(',');
+                    $('#Office').html('');
+                    $('#Office').append("<option value='All'>All</option>");
+                    for (var i = 0; i < splitData.length; i++) { 
+                       
+                       $('#Office').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>"); 
+                    }  
+                   renderChart();
+                }  
+            });  
+        }); 
+    }
+
+      function renderChartOnOfficeChange() {
+         $('#Office').change(function () {  
+           renderChart();
+        }); 
+    }
+
+    function renderChart() {
+
+        var region = $('#Region').val();
+        var country = $('#Country').val();
+         var city = $('#City').val();
+         var office = $('#Office').val();
+         var period = $('#Period').val();
+         var StartDate = $('#StartDate').val();
+         var EndDate = $('#EndDate').val();
+        var type = $('#Type').val();
+        var ctx = $('#myChart');
+      
+        var chartOptions = {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                    boxWidth: 20,
+                    fontColor: 'blue'
+                },
+                responsive: false
+            }
+        };
+      console.log('start');
+          $.ajax({  
+                type: "get",  
+                url: "/Report/ChartsData/" + region + "/"+  country + "/" + city + "/" + office + "/" + type + "/" + period + "/" + StartDate + "/" + EndDate ,  
+              
+                success: function (data) {  
+                   var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: data,
+                        options: chartOptions
+                    });
+                }  
+            });  
+    }
+
+    $(() => {
+
+        var today = new Date();
+        $('#StartDate').val(today.toISOString().substr(0, 10));
+        $('#EndDate').val(today.toISOString().substr(0, 10));
+
+        getRegion();
+        getCountry();
+        getCity();
+        getOffice();
+        renderChartOnOfficeChange();
+        renderChart();
+    });
+
+
+    
+</script>
+
+
+

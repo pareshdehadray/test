@@ -213,8 +213,8 @@
     <Content Include="Views\TestUser\Index.cshtml" />
     <Content Include="Views\Data\DataPoints.cshtml" />
     <Content Include="Views\Home\Charts - Copy.cshtml" />
+    <Content Include="Views\Report\ChartsEF.cshtml" />
     <Content Include="Views\Report\Charts.cshtml" />
-    <Content Include="Views\Report\ChartsAPI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

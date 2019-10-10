@@ -102,12 +102,14 @@
 
     <script>
 
-        function getRegion() {
+    function getRegion() {
+
             $.ajax({
                 type: "get",
                 url: "/Report/GetLocations/All/All",
 
                 success: function (data) {
+                    console.log('success');
                     var sData = new String(data);
                     var splitData = sData.split(',');
                     $('#Region').html('');
@@ -118,10 +120,12 @@
                     $('#City').append("<option value='All'>All</option>");
                     $('#Office').html('');
                     $('#Office').append("<option value='All'>All</option>");
+                  
+                   
                     for (var i = 0; i < splitData.length; i++) {
-
                         $('#Region').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>");
                     }
+                    
                     renderChart();
                 }
             });
@@ -142,9 +146,11 @@
                         $('#City').append("<option value='All'>All</option>");
                         $('#Office').html('');
                         $('#Office').append("<option value='All'>All</option>");
-                        for (var i = 0; i < splitData.length; i++) {
 
-                            $('#Country').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>");
+                        if (sData != '') {
+                            for (var i = 0; i < splitData.length; i++) {
+                                $('#Country').append("<option value='" + splitData[i] + "'>" + splitData[i] + "</option>");
+                            }
                         }
                         renderChart();
                     }
@@ -161,6 +167,7 @@
                     success: function (data) {
                         var sData = new String(data);
                         var splitData = sData.split(',');
+                       
                         $('#City').html('');
                         $('#City').append("<option value='All'>All</option>");
                         $('#Office').html('');

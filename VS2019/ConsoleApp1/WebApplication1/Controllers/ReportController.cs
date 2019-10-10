@@ -234,7 +234,7 @@ namespace WebApplication1.Controllers
 
             var dataFirst = new
             {
-                label = "Food Waste",
+               // label = "Food Waste",
                 data = array,
                 lineTension = 0,
                 fill = false,

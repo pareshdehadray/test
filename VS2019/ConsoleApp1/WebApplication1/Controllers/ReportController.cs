@@ -123,7 +123,7 @@ namespace WebApplication1.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpGet]
+        [HttpGet]
         public async Task<JsonResult> ChartsDataByAPI(string region, string country, string city, string office, string graphType, string Period, string StartDate, string EndDate)
         {
             DateTime start = new DateTime(2019, 8, 1);
@@ -300,7 +300,7 @@ namespace WebApplication1.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpGet]
+        [HttpGet]
         public JsonResult GetLocations(string type, string value)
         {
             DataAccess.hackathon2019Entities hackathon2019Entities = new DataAccess.hackathon2019Entities();

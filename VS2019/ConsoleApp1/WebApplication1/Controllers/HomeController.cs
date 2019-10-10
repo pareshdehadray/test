@@ -15,7 +15,7 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
           
-            return Redirect("index.html");
+            return Redirect("index1.html");
         }
 
         public ActionResult About()

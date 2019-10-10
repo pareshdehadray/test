@@ -146,7 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="about.html" />
+    <Content Include="about1.html" />
     <Content Include="contact.html" />
+    <Content Include="contact1.html" />
     <Content Include="Content\all.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -168,7 +170,9 @@
     <Content Include="img\call-to-action-3.jpg" />
     <Content Include="img\call-to-action.jpg" />
     <Content Include="img\coffee-glass.jpg" />
+    <Content Include="img\fb.jpg" />
     <Content Include="img\ice-mountain.jpg" />
+    <Content Include="img\insta.jpg" />
     <Content Include="img\mobile-screen - Copy.png" />
     <Content Include="img\mobile-screen 1.png" />
     <Content Include="img\mobile-screen.png" />
@@ -176,7 +180,9 @@
     <Content Include="img\person-1.png" />
     <Content Include="img\person-2.png" />
     <Content Include="img\person-3.png" />
+    <Content Include="img\twiter.png" />
     <Content Include="index.html" />
+    <Content Include="index1.html" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\parallax.min.js" />

@@ -65,7 +65,7 @@ namespace WebApplication1.Controllers
                 {
                     HttpContext.User = new GenericPrincipal(new GenericIdentity(loginModel.UserID, "forms"), new string[] { "Admin" });
                     Session["IsAdmin"] = "true";
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Index", "Location");
                 }
                 else if (firstUserData.role.ToLower() == "vendor")
                 {

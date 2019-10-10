@@ -1,11 +1,12 @@
 ﻿@{
     ViewBag.Title = "Reports";
+   
 }
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/Chart.js"></script>
 
 <h2>Reports</h2>
-<div class="container">
+<div>
     <div class="row">
         <div class="col-sm-1">
             Start Date
@@ -88,18 +89,18 @@
                 <option value="All">All</option>
             </select>
         </div>
-      
+
     </div>
     <div class="row">
         <div class="col-sm-12">
             &nbsp;
         </div>
     </div>
-</div>
+
     <div style="width:900px;height:800px;">
         <canvas id="myChart"></canvas>
     </div>
-
+</div>
     <script>
 
     function getRegion() {
